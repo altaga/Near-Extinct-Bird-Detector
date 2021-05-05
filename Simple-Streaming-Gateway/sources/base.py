@@ -11,8 +11,8 @@ import paho.mqtt.client as paho
 import ssl
 
 # FILL THIS WITH YOU CREDENTIALS AND CERTS FOLDER
-EndPoint = "a2otikfnw8b657-ats.iot.us-east-1.amazonaws.com"
-sub_topic = 'birds-detected'
+EndPoint = "xxxxxxxxxxxxxx.iot.us-east-1.amazonaws.com"
+topic = 'birds-detected'
 
 caPath = "Certs/ca.cert"
 certPath = "Certs/client.cert"

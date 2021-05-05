@@ -259,7 +259,11 @@ A configuration guide utilizing the ESP32
 
 Todo el codigo de este proyecto de ESP32 esta en la carpeta esp32_simple_http_uart, para compilarlo y flash en el ESP32 tienes que utilizar el add-on de vscode de ESP-IDF.
 
-En la linea 135 de sdkconfig, pon tus credenciales de wifi y compila el codigo.
+https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/vscode-setup.html
+
+El unico setup que requiere este proyecto es el siguiente.
+
+En la linea 135 de esp32_simple_http_uart/sdkconfig pon tus credenciales de wifi y compila el codigo.
 
     CONFIG_EXAMPLE_CONNECT_WIFI=y
     # CONFIG_EXAMPLE_CONNECT_ETHERNET is not set
@@ -267,6 +271,8 @@ En la linea 135 de sdkconfig, pon tus credenciales de wifi y compila el codigo.
     CONFIG_EXAMPLE_WIFI_PASSWORD="YOURPASS"
     CONFIG_EXAMPLE_CONNECT_IPV6=y
     # end of Example Connection Configuration
+
+Una vez hecho esto podras conectarlo a la Simple-Streaming-Gateway sin problema.
 
 # Simple-Streaming-Gateway:
 

@@ -25,12 +25,14 @@
   - [**Labeling Data**:](#labeling-data)
 - [SensiML:](#sensiml)
 - [Testing Model:](#testing-model)
+      - [Video Demo: Click on the image](#video-demo-click-on-the-image)
 - [ESP32 Interface:](#esp32-interface)
 - [Simple-Streaming-Gateway:](#simple-streaming-gateway)
   - [**SSG to AWS IoT**:](#ssg-to-aws-iot)
 - [WebPage Deploy:](#webpage-deploy)
   - [AWS Cognito:](#aws-cognito)
   - [AWS IoT WebSocket:](#aws-iot-websocket)
+  - [Data Post Processing:](#data-post-processing)
 - [Final Product:](#final-product)
 - [EPIC DEMO:](#epic-demo)
 
@@ -244,7 +246,7 @@ Aunque parezca que el modelo detecta multiples aves sin sentido, realmente esta 
 
 En este caso este es un demo ya con la plataforma final, detectando una de las aves, este proceso de promediado se explicara en la seccion [Webpage](#webpage-deploy).
 
-Video Demo: Click on the image
+#### Video Demo: Click on the image
 [![demo](./Images/with.png)](https://youtu.be/nprNXlukX60)
 
 # ESP32 Interface:
@@ -364,12 +366,71 @@ Ya con esto el device mandara los datos a AWS IoT.
 
 # WebPage Deploy:
 
+El despliegue de la pagina web se realizo mediante ReactJS y AWS-SDK para javascript.
 
+<img src="./Images/deks.png">
+
+https://near-extinct-bird-detector.s3.amazonaws.com/index.html
 
 ## AWS Cognito:
 
+Por seguridad, para utilizar y consumir de forma segura los servicios de AWS se implementaron credenciales de **identity pool** con el servicio Cognito.
+
+Las claves de acceso para AWSIoT y Cognito deben de ser colocadas en el siguiente archivo.
+
+Webapp/src/components/aws-configuration.js
+
+    var awsConfiguration = {
+      poolId: "us-east-1:XXXXXXXXXXXXXXX", // 'YourCognitoIdentityPoolId'
+      host:"XXXXXXXXXXXXXX-ats.iot.us-east-1.amazonaws.com", // 'YourAwsIoTEndpoint', e.g. 'prefix.iot.us-east-1.amazonaws.com'
+      region: "us-east-1" // 'YourAwsRegion', e.g. 'us-east-1'
+    };
+    module.exports = awsConfiguration;
+
 ## AWS IoT WebSocket:
+
+La pagina web recibe los datos del sensor mediante AWSIoT como web socket, asi que es importante definir dentro de la pagina, cual es el topic que vamos a recibir, en este caso "birds-detected" como pudimos ver en video de [Video Demo](#video-demo-click-on-the-image).
+
+En el siguiente archivo coloca el nombre del topic al cual estaras suscrito.
+
+WebApp/src/App.js
+
+    <IotReciever sub_topics={["birds-detected"]} callback={this.callBackIoT} />
+
+## Data Post Processing:
+
+Para post procesar los datos detectados por el sensor, se tomo un promedio de 7 muestras, cada vez que el sistema detecta que tiene acumuladas 7 muestras de audio, obtiene la moda estadistica de los datos para observar cual de las aves fue la mas detecetada, mostrando la informacion de esta.
+
+    const temp = JSON.parse(IoTData[1])
+      in_array.push(parseInt(temp.Classification))
+      console.log(in_array)
+      if (in_array.length > 6) {
+        let temps = this.state.birds
+
+        if (flag && temps.find(element => element === (statisticalMode(in_array) - 1)) === undefined && (statisticalMode(in_array) - 1) !== 3) {
+          flag = false
+          temps.pop()
+          temps.push(statisticalMode(in_array) - 1)
+          this.setState({
+            birds: temps
+          })
+        }
+        else if (temps.find(element => element === (statisticalMode(in_array) - 1)) === undefined && (statisticalMode(in_array) - 1) !== 3) {
+          temps.push(statisticalMode(in_array) - 1)
+          this.setState({
+            birds: temps
+          })
+        }
+        in_array = []
+      
+Aqui podemos ver como la plataforma detecta una de las aves correctamente.
+
+[Video Demo](#video-demo-click-on-the-image).
 
 # Final Product:
 
+Pending...
+
 # EPIC DEMO:
+
+[![demo](./Images/Logo.png)](pending)

@@ -441,6 +441,10 @@ Aqui podemos ver como la plataforma detecta una de las aves correctamente.
 
 # Final Product:
 
+Este proyecto lo desplegue en un bosque local, el cual por fortuna tiene conexion de WiFi gratuita, por lo tanto fue posible colocar mi device en este lugar para realizar mis pruebas piloto.
+
+<img src="./Images/wifi.jpg" width="400">
+
 Device:
 
 <img src="./Images/device1.jpg">

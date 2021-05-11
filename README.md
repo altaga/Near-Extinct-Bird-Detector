@@ -42,6 +42,8 @@ Because of illegal hunting and sporting hunt, there are several near-extinct bir
 
 The current discussion [1] according to Nature, is how much of this extinction of species can be mitigated if action is taken to avoid it, reinforced by Birdlife [2], and it approximates a 40% mitigation.
 
+<img src="./Images/birds.jpg">
+
 Similar solutions that i found are based on raising awareness of the problem. Ignoring those solutions, i can find:
 
 * Use of necklaces with GPS.
@@ -69,7 +71,11 @@ In the case of the latter, in addition to strengthening our theory, it gives us 
 
 Using the Infineon IM69D130 PDM digital microphone included in the QuickFeather Development Kit we will obtain an audio signal which, using SensiML, we can pass through a neural network, which indicates the type of bird we are hearing.
 
+<img src="./Images/device11.jpg">
+
 Desplegando la informacion de las aves detectectadas en una sencilla webapp.
+
+<img src="./Images/deks.png">
 
 ## Features:
 
@@ -435,7 +441,18 @@ Aqui podemos ver como la plataforma detecta una de las aves correctamente.
 
 # Final Product:
 
-Pending...
+Device:
+
+<img src="./Images/device1.jpg">
+<img src="./Images/device2.jpg">
+
+Gateway:
+
+<img src="./Images/device3.jpg">
+
+Device on site:
+
+<img src="./Images/device11.jpg">
 
 # EPIC DEMO:
 

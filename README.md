@@ -464,4 +464,4 @@ https://near-extinct-bird-detector.s3.amazonaws.com/index.html
 
 # EPIC DEMO:
 
-[![demo](./Images/Logo.png)](pending)
+[![demo](./Images/Logo.png)](https://youtu.be/9zGySp_nlzE)

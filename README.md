@@ -73,7 +73,7 @@ Using the Infineon IM69D130 PDM digital microphone included in the QuickFeather 
 
 <img src="./Images/device11.jpg">
 
-Desplegando la informacion de las aves detectectadas en una sencilla webapp.
+Displaying the information of the birds detected in a simple webapp.
 
 <img src="./Images/deks.png">
 
@@ -137,23 +137,23 @@ QuickFeather as AI Shield for ESP32.
 
 # Dev Environment Setup:
 
-Debido a que mi computadora la utilizo para realiza la programacion de muchos distintos componentes, me gusta mucho poder aislar los environments que utilizo para programar, en este caso para realizar el desarrollo de mi aplicacion y poder utilizar el Qorc SDK correctamente, instale todo en un container el cual pudiera simplemente encender y apagar para compilar los programas, ademas de reproducible facilmente en distintas maquinas.
+Since I use my computer to program many different components, I really like being able to isolate the environments that I use to program. In this case to carry out the development of the application and to be able to use the Qorc SDK correctly, I installed everything in one container which could simply be turned on and off to compile the programs. In addition to being easily reproducible on different machines.
 
-He subido el contenedor a Docker Hub para que puedas utilizarlo tambien si lo deseas.
+I have uploaded the container to Docker Hub so you can use it too if you want.
 
 Zelda: https://hub.docker.com/r/altaga/symbiflow-ql
 
-Aqui una muestra de el contenedor compilando el programa muestra de qf_ssi_ai_app
+Here is a sample of the container compiling the sample program of qf_ssi_ai_app
 
 <img src="./Images/command.png">
 
 # QuickFeather Burner v1 (Flasher):
 
-Ademas de compilar todo en ENV de desarrollo en un docker, decidi crear una GUI para programar facilmente el QuickFeather sin necesidad de linea de comandos.
+In addition to compiling everything into development ENV on a docker, I decided to create a GUI to easily program QuickFeather without the need for a command line.
 
-El programa es compatible con Windows 10 y podras encontrar el ejecutable en la carpeta QuickFeather Burner v1
+The program is compatible with Windows 10 and you can find the executable in the QuickFeather Burner v1 folder
 
-Sino puedes ver el codigo de este en el repositorio.
+Otherwise you can see the code for this in the repository.
 
 https://github.com/altaga/QuickFeather-Burner-v1
 
@@ -163,25 +163,25 @@ https://github.com/altaga/QuickFeather-Burner-v1
 
 <img src="./Images/path.png">
 
-- **Install Dep**: La primera vez que lo abras presiona el boton para instalar las dependencias del programa.
-- **Refresh Ports**: Refresca los serial ports conectados a la pc.
-- **Browse Bin File**: Buscar el bin a instalar en el dispositivo.
-- **Program**: Programa el bin en el dispositivo seleccionado, una vez termine de flashear el dispositivo deberas ver una respuesta se success.
+- **Install Dep**: The first time you open it, press the button to install the program's dependencies.
+- **Refresh Ports**: Refresh the serial ports connected to the pc.
+- **Browse Bin File**: Searches the file in the bin.
+- **Program**: Program the bin on the selected device, once you finish flashing the device you should see a "success" response.
 
 Video Demo: Click on the image
 
 [![demo](./Images/icon.ico)](https://youtu.be/MzutQS3lmEE)
 
-La funcion de este programa es puramente la de agilizar el proceso de flash del device desde la linea de comandos.
+The function of this program is purely to speed up the flash process of the device from the command line.
 
 # Capture Data:
 
-Para tener una data fiable de los cantos de aves de mi pais y poder realizar una prueba correcta del dispositivo, decidi utilizar los cantos de esta "base de datos" como input para el entrenamiento de mi modelo.
+In order to have a reliable data of the bird songs of my country and to be able to carry out a correct test of the device, It was decided to use the songs of this "database" as input for the training of the model.
 
-#### **Data**: (La pagina esta en español asi que les dejo la version traducida por google translate)
+#### **Data**: (The web page is in Spanish so I leave the version translated by google translate)
 https://translate.google.com/translate?sl=es&tl=en&u=https://www.biodiversidad.gob.mx/cienciaciudadana/cantos_aves_cdmx
 
-Para esta prueba decidi utilizar los datos de las siguientes 6 aves al azar.
+For this test I decided to use the data from the following 6 random birds.
 
 * Beryllium hummingbird
 * Mexican carpenter
@@ -190,86 +190,87 @@ Para esta prueba decidi utilizar los datos de las siguientes 6 aves al azar.
 * Tailor
 * Zanate Mayor 
 
-Si deseas profundizar mas en el proyecto esta en la carpeta Data Capture Lab Project.
+If you want to go deeper into the project, it is in the Data Capture Lab Project folder.
 
 ## **Setup Quickfeather**:
 
-Para el setup de el device y poder realizar el muestreo de mis audios mediante el QuickFeather segui el tutorial oficial de SensiML.
+To setup the device and to be able to sample my audios using QuickFeather, I followed the official SensiML tutorial.
 
 Working with Audio Data
 using QuickFeather and SensiML
 https://sensiml.com/blog/tutorial-series/#
 
-En mi caso ya que el dispositivo va funcionar mediante WiFi, decidi utilizar la interfaz de ESP32 ofrecida por SensiML para mandar todos los datos por WiFi. Mas detalles en [ESP32 Interface](#esp32-interface)
+In this case, since the device will work through WiFi, I decided to use the ESP32 interface offered by SensiML to send all the data through WiFi. More details in:
+[ESP32 Interface](#esp32-interface)
 
 https://github.com/sensiml/esp32_simple_http_uart
 
-Particularmente si quieres revisar el proyecto y compilarlo por ti mismo, estara en la carpeta. Data Capture Lab
+Particularly if you want to review the project and compile it yourself, it will be in the folder. Data Capture Lab
 
-Si solo quieres empezar a tomar las medidas desde tu dispositivo el bin compilado estara en la carpeta. Data Capture Lab Bin
+If you just want to start taking measurements from your device, the compiled bin will be in the folder. Data Capture Lab Bin
 
 Video Demo: Click on the image
 [![demo](./Images/capture.png)](https://youtu.be/fuV5jnc7KdA)
 
 ## **Capturing Data**:
 
-Para realizar el muestreo de los datos, tome los audios proporcionados por la [Webpage](#data) y los capture con el QuickFeather.
+To sample the data, take the audios provided by the [Webpage](#data) and capture them with the QuickFeather.
 
 <img src="./Images/cap1.png">
 
 ## **Labeling Data**:
 
-Para el labeling de los datos, en cada trama de datos capturados, seleccione los segmentos mas significativos de los cantos de las aves y ademas seleccione los segmentos donde no cantaban para tener la categoria Normal (donde no hay cantos de aves, puro ruido de la naturaleza de fondo, en este caso "silencio")
+For data labeling, in each frame of captured data, select the most significant segments of the bird songs and also select the segments where they did not sing to have the Normal category (where there are no bird songs, pure noise from the background nature, in this case "silence")
 
-Aqui un ejemplo de el canto de el carpintero mexicano.
+Here is an example of the song of the Mexican carpenter:
 
 <img src="./Images/lab1.png">
 
 # SensiML:
 
-En este caso al entrenar al modelo utilice los siguientes settings, ya que fueron los que me dieron los mejores resultados.
+In this case, when training the model, use the following settings, since they were the ones that gave me the best results.
 
 <img src="./Images/model.png">
 
-La matriz de confusion resultante del modelo generado fue.
+The confusion matrix resulting from the generated model was:
 
 <img src="./Images/model1.png">
 
-Los resultados del reconocimiento de las 6 aves fueron.
+The results of the recognition of the 6 birds were:
 
 <img src="./Images/model2.png">
 
-Debido a las limitaciones del microcontrolador hay que procurar que sean pocas las aves a detectar por microcontrolador.
+Due to the limitations of the microcontroller, it is necessary to ensure that there are few birds to be detected by the microcontroller.
 
 # Testing Model:
 
-Probando el modelo con algunas de las aves mediante el [ESP32 Interface](#esp32-interface) y [Simple-Streaming-Gateway](#simple-streaming-gateway).
+Testing the model with some of the birds using the [ESP32 Interface](#esp32-interface) y [Simple-Streaming-Gateway](#simple-streaming-gateway).
 
 Video Demo: Click on the image
 [![demo](./Images/without.png)](https://youtu.be/ecdKog_eNtY)
 
-Aunque parezca que el modelo detecta multiples aves sin sentido, realmente esta detectando mayormente el ave que queremos, sin embargo para demostrar esto, tenemos que sacar el promedio de varias detecciones para mostrar como si detecta el ave correctamente.
+Although it seems that the model detects multiple birds without sense, it is actually detecting mostly the bird that we want. However, to demonstrate this, we have to average several detections to show how it detects the bird correctly.
 
-En este caso este es un demo ya con la plataforma final, detectando una de las aves, este proceso de promediado se explicara en la seccion [Webpage](#webpage-deploy).
+This is a demo with the final platform, detecting one of the birds. This averaging process will be explained in the section [Webpage](#webpage-deploy).
 
 #### Video Demo: Click on the image
 [![demo](./Images/with.png)](https://youtu.be/nprNXlukX60)
 
 # ESP32 Interface:
 
-Esta interfaz de ESP32 es explicada en la serie de videos de SensiML.
+This ESP32 interface is explained in the SensiML video series.
 
 https://sensiml.com/blog/tutorial-series/
 Connecting QF and Data Capture Lab over WiFi
 A configuration guide utilizing the ESP32
 
-Todo el codigo de este proyecto de ESP32 esta en la carpeta esp32_simple_http_uart, para compilarlo y flash en el ESP32 tienes que utilizar el add-on de vscode de ESP-IDF.
+All the code for this ESP32 project is in the esp32_simple_http_uart folder, to compile it and flash it on ESP32 you have to use the ESP-IDF vscode add-on.
 
 https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/vscode-setup.html
 
-El unico setup que requiere este proyecto es el siguiente.
+The only setup that this project requires is the following.
 
-En la linea 135 de esp32_simple_http_uart/sdkconfig pon tus credenciales de wifi y compila el codigo.
+In line 135 of esp32_simple_http_uart / sdkconfig put your wifi credentials and compile the code.
 
     CONFIG_EXAMPLE_CONNECT_WIFI=y
     # CONFIG_EXAMPLE_CONNECT_ETHERNET is not set
@@ -278,15 +279,15 @@ En la linea 135 de esp32_simple_http_uart/sdkconfig pon tus credenciales de wifi
     CONFIG_EXAMPLE_CONNECT_IPV6=y
     # end of Example Connection Configuration
 
-Una vez hecho esto podras conectarlo a la Simple-Streaming-Gateway sin problema.
+Once this is done you can connect it to the Simple-Streaming-Gateway without problem.
 
 # Simple-Streaming-Gateway:
 
-Para poder revisar lo que esta leyendo nuestro QuickFeather instale el ejemplo de SSG proporcionado por SensiML.
+In order to review what our QuickFeather is reading, install the SSG example provided by SensiML.
 
 https://github.com/sensiml/open-gateway
 
-Para poder dejar el sistema instalado y no tener que correr el SSG en una computadora, decidi instalarlo completamente en una RaspberryPi Zero W
+In order to leave the system installed and not have to run SSG on a computer, I decided to install it completely on a RaspberryPi Zero W
 
 <img src="./Images/rasp.jpg">
 
@@ -296,20 +297,20 @@ Aqui se ve la plataforma.
 
 ## **SSG to AWS IoT**:
 
-En este caso para poder comunicar nuestro dispositivo a AWS IoT decidi modificar un poco el codigo del SSG para poder implementar una conexion MQTT a AWS IoT, aprovecharemos que el SSG usa un backend de Python para funcionar.
+In this case, in order to communicate our device to AWS IoT, I decided to modify the SSG code a bit in order to implement an MQTT connection to AWS IoT, we will take advantage of the fact that the SSG uses a Python backend to work.
 
-El archivo a modificar en el SSG fue Simple-Streaming-Gateway/sources/base.py
+The file to modify in the SSG was Simple-Streaming-Gateway/sources/base.py
 
-Se le agrero un Broker de MQTT para AWSIoT.
+An MQTT Broker for AWSIoT was added.
 
-* Agrega tu AWSIoT endpoint y el topic al cual mandaras los datos.
+*Add your AWSIoT endpoint and the topic to which you will send the data.
 
 EndPoint = "XXXXXXXXXXXXXXX.iot.us-east-1.amazonaws.com"
 sub_topic = 'birds-detected'
 
-Debido a la seguridad de AWS, es necesario crear un certificado de client y uno private, para poder comunicar el device a la plataforma.
+Due to AWS security, it is necessary to create a client certificate and a private certificate, in order to communicate the device to the platform.
 
-- First we have to access our AWS console y look for the IoT core service:
+- First we have to access our AWS console and look for the IoT core service:
 
 <img src="https://i.ibb.co/KVbtQLR/image.png" width="600">
 
@@ -372,13 +373,13 @@ Copy-paste the following text in the document and save it.
 
 <img src="https://i.ibb.co/ydtTqB2/image.png" width="600">
 
-Ya con esto el device mandara los datos a AWS IoT.
+With this, the device will send the data to AWS IoT.
 
 <img src="./Images/iot.png" width="600">
 
 # WebPage Deploy:
 
-El despliegue de la pagina web se realizo mediante ReactJS y AWS-SDK para javascript.
+The deployment of the web page was done using ReactJS and AWS-SDK for javascript.
 
 <img src="./Images/deks.png">
 
@@ -386,9 +387,9 @@ https://near-extinct-bird-detector.s3.amazonaws.com/index.html
 
 ## AWS Cognito:
 
-Por seguridad, para utilizar y consumir de forma segura los servicios de AWS se implementaron credenciales de **identity pool** con el servicio Cognito.
+For security, to safely use and consume AWS services, **identity pool** credentials were implemented with the Cognito service.
 
-Las claves de acceso para AWSIoT y Cognito deben de ser colocadas en el siguiente archivo.
+The access keys for AWSIoT and Cognito must be placed in the following file.
 
 Webapp/src/components/aws-configuration.js
 
@@ -401,17 +402,16 @@ Webapp/src/components/aws-configuration.js
 
 ## AWS IoT WebSocket:
 
-La pagina web recibe los datos del sensor mediante AWSIoT como web socket, asi que es importante definir dentro de la pagina, cual es el topic que vamos a recibir, en este caso "birds-detected" como pudimos ver en video de [Video Demo](#video-demo-click-on-the-image).
+The web page receives the sensor data through AWSIoT as a web socket, so it is important to define within the page, which is the topic that we are going to receive, in this case "birds-detected" as we could see in the video of [Video Demo ](#video-demo-click-on-the-image).
 
-En el siguiente archivo coloca el nombre del topic al cual estaras suscrito.
-
+In the following file, put the name of the topic to which you will be subscribed.
 WebApp/src/App.js
 
     <IotReciever sub_topics={["birds-detected"]} callback={this.callBackIoT} />
 
 ## Data Post Processing:
 
-Para post procesar los datos detectados por el sensor, se tomo un promedio de 7 muestras, cada vez que el sistema detecta que tiene acumuladas 7 muestras de audio, obtiene la moda estadistica de los datos para observar cual de las aves fue la mas detecetada, mostrando la informacion de esta.
+To post-process the data detected by the sensor, an average of 7 samples was taken. Each time the system detects that it has accumulated 7 audio samples, it obtains the statistical mode of the data to observe which of the birds was the most detected. Showing the information of this events.
 
     const temp = JSON.parse(IoTData[1])
       in_array.push(parseInt(temp.Classification))
@@ -435,13 +435,13 @@ Para post procesar los datos detectados por el sensor, se tomo un promedio de 7 
         }
         in_array = []
       
-Aqui podemos ver como la plataforma detecta una de las aves correctamente.
+Here we can see how the platform detects one of the birds correctly.
 
 [Video Demo](#video-demo-click-on-the-image).
 
 # Final Product:
 
-Este proyecto lo desplegue en un bosque local, el cual por fortuna tiene conexion de WiFi gratuita, por lo tanto fue posible colocar mi device en este lugar para realizar mis pruebas piloto.
+I deployed this project in a local forest, which fortunately has a free WiFi connection. Therefore it was possible to place the device in this place to carry out the pilot tests.
 
 <img src="./Images/wifi.jpg" width="400">
 

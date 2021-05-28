@@ -19,7 +19,7 @@
 - [Dev Environment Setup:](#dev-environment-setup)
 - [QuickFeather Burner v1 (Flasher):](#quickfeather-burner-v1-flasher)
 - [Capture Data:](#capture-data)
-      - [**Data**: (La pagina esta en español asi que les dejo la version traducida por google translate)](#data-la-pagina-esta-en-español-asi-que-les-dejo-la-version-traducida-por-google-translate)
+      - [**Data**: (The web page is in Spanish so I leave the version translated by google translate)](#data-the-web-page-is-in-spanish-so-i-leave-the-version-translated-by-google-translate)
   - [**Setup Quickfeather**:](#setup-quickfeather)
   - [**Capturing Data**:](#capturing-data)
   - [**Labeling Data**:](#labeling-data)
@@ -128,6 +128,8 @@ Displaying the information of the birds detected in a simple webapp.
 ## Backend:
 
 <img src="./Images/scheme.png">
+
+We will use the QuickFeather kit and through Simple Stream Gateway connect it to both the Device and AWS and that information will be displayed in a web app.
 
 ## Hardware:
 

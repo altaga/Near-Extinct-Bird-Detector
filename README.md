@@ -161,7 +161,7 @@ https://github.com/altaga/QuickFeather-Burner-v1
 
 <img src="./Images/programmer.png">
 
-- Requisitos previos, tener python3 instalado en la pc y disponible en PATH.
+Prerequisites, have python3 installed on the pc and available in PATH.
 
 <img src="./Images/path.png">
 
